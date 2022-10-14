@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { FormEvent } from "react";
 
 const clients = [
@@ -6,6 +7,8 @@ const clients = [
 ];
 
 const Create = () => {
+  const [sendMail, setSendMail] = useState(true);
+
   const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
@@ -16,6 +19,8 @@ const Create = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+
+    setSendMail(false);
   };
 
   return (
@@ -79,7 +84,7 @@ const Create = () => {
         </div>
         <div className="form__buttons">
           <button type="submit">Create invoice</button>
-          <button disabled>Send email</button>
+          <button data-test="send-mail" disabled={sendMail}>Send email</button>
         </div>
       </form>
     </div>

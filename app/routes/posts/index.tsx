@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Posts from "./Posts";
 
 interface Post {
   id: number;
@@ -6,7 +7,7 @@ interface Post {
   body: string;
 }
 
-const Posts = () => {
+const PostsList = () => {
   const [posts, setPosts] = useState<Post[]>();
 
   useEffect(() => {
@@ -27,14 +28,10 @@ const Posts = () => {
   return (
     <div>
       <h1>POST LIST</h1>
-      {posts.map(({ id, title, body }) => (
-        <li key={id}>
-          <h2>{title}</h2>
-          <p>{body}</p>
-        </li>
-      ))}
+      <Posts list={posts} />
     </div>
   );
 };
 
-export default Posts;
+
+export default PostsList;
